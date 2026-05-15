@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SHL Assessment Recommendation Chatbot
 
 An AI-powered conversational recommendation system for SHL assessments built using FastAPI, React, semantic search, and Gemini AI.
@@ -337,6 +336,3 @@ Sudhanshu Verma
 B.Tech IT Student
 
 Built as part of the SHL Research Intern AI Assignment.
-=======
-# shl-assessment-agent
->>>>>>> 6989fb46f6b7a38d7951d0e879fb5b9bdd99e70d
