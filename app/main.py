@@ -8,16 +8,17 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 # CORS
+origins = [
+    "https://shl-assessment-agent-tau.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://shl-assessment-agent-tau.vercel.app"
-    ],
-    allow_credentials=True,
+    allow_origins=origins,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get("/health")
 def health():
