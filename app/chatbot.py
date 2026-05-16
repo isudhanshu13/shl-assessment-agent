@@ -1,4 +1,3 @@
-import google.generativeai as genai
 import os
 
 from dotenv import load_dotenv
@@ -7,11 +6,11 @@ from app.retriever import search_assessments
 
 load_dotenv()
 
-genai.configure(
+from google import genai
+
+client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
-
-model = genai.GenerativeModel("gemini-1.5-flash")
 
 
 def is_vague(text):
