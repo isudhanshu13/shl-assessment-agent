@@ -6,17 +6,14 @@ from app.chatbot import generate_reply
 
 app = FastAPI()
 
-origins = [
-    "https://shl-assessment-agent-tau.vercel.app",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=False,
+    allow_origins=["https://shl-assessment-agent-tau.vercel.app"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/health")
 def health():
