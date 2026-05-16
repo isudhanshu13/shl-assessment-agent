@@ -39,16 +39,22 @@ function App() {
 
     try {
 
-      const response = await axios({
-         method: "post",
-         url: "https://shl-assessment-agent-production.up.railway.app/chat",
-         headers: {
-          "Content-Type": "application/json"
-      },
-        data: {
+      const response = await axios.post(
+        "https://shl-assessment-agent-production.up.railway.app/chat",
+        {
           messages: updatedChat
-  }
-});
+        }
+      );
+
+      setChat([
+        ...updatedChat,
+        {
+          role: "assistant",
+          content: response.data.reply,
+          recommendations:
+            response.data.recommendations
+        }
+      ]);
 
     } catch (error) {
 
