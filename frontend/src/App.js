@@ -40,7 +40,7 @@ function App() {
     try {
 
       const response = await axios.post(
-        "https://shl-assessment-agent-production.up.railway.app",
+        "https://shl-assessment-agent-production.up.railway.app/chat",
         {
           messages: updatedChat
         }
