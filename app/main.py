@@ -26,5 +26,5 @@ def chat(req: ChatRequest):
     return {
         "reply": result["reply"],
         "recommendations": result["recommendations"],
-        "end_of_conversation": result["end"]
+        "end_of_conversation": result["end_of_conversation"]
     }
