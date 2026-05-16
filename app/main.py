@@ -3,11 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.models import ChatRequest
 from app.chatbot import generate_reply
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
 
-# CORS
 origins = [
     "https://shl-assessment-agent-tau.vercel.app",
 ]
@@ -22,23 +20,14 @@ app.add_middleware(
 
 @app.get("/health")
 def health():
-
-    return {
-        "status": "ok"
-    }
-
+    return {"status": "ok"}
 
 @app.post("/chat")
 def chat(req: ChatRequest):
+    result = generate_reply(req.messages)
 
-    messages = [
-        {
-            "role": msg.role,
-            "content": msg.content
-        }
-        for msg in req.messages
-    ]
-
-    response = generate_reply(messages)
-
-    return response
+    return {
+        "reply": result["reply"],
+        "recommendations": result["recommendations"],
+        "end_of_conversation": result["end"]
+    }
