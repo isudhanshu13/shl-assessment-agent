@@ -8,9 +8,12 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=[ "*",
+        "https://shl-assessment-agent-tau.vercel.app",
+        "https://shl-assessment-agent-50wwrihsq-sudhanshu-varmas-projects.vercel.app"
+    ],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -21,10 +24,11 @@ def health():
 
 @app.post("/chat")
 def chat(req: ChatRequest):
-    result = generate_reply(req.messages)
-
+    # Convert Pydantic objects to plain dicts
+    messages = [{"role": m.role, "content": m.content} for m in req.messages]
+    result = generate_reply(messages)
     return {
         "reply": result["reply"],
         "recommendations": result["recommendations"],
-        "end_of_conversation": result["end_of_conversation"]
+        "end_of_conversation": result["end_of_conversation"],
     }
