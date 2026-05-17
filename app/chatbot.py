@@ -89,7 +89,8 @@ def is_refinement_query(text):
 
 def generate_reply(messages):
 
-    last_message = messages[-1]["content"]
+    last = messages[-1]
+    last_message = last.content if hasattr(last, "content") else last["content"]
 
     # OFF TOPIC
     if is_off_topic(last_message):
